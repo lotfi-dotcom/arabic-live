@@ -1,52 +1,67 @@
 import { create } from 'zustand';
 
-export interface WordBreakdown {
+export interface WordCard {
   arabic: string;
   transliteration: string;
   meaning_de: string;
+  example_arabic: string;
+  example_transliteration: string;
+  example_de: string;
   root: string;
   root_meaning: string;
   type: string;
 }
 
-export interface LessonData {
-  headline: string;
-  source: string;
-  translation_de: string;
-  words: WordBreakdown[];
-  grammar_tip: string;
+export interface DialogLine {
+  speaker: 'A' | 'B';
+  name: string;
+  arabic: string;
+  transliteration: string;
+  meaning_de: string;
+}
+
+export interface QuizData {
+  arabic: string;
+  question_de: string;
+  options: string[];
+  correct: number;
+}
+
+export interface EpisodeData {
+  theme: string;
+  theme_arabic: string;
   difficulty: string;
+  words: WordCard[];
+  dialog: DialogLine[];
+  quiz: QuizData;
+  grammar_tip: string;
   cultural_note: string;
 }
 
 interface StoreState {
-  lesson: LessonData | null;
-  activeWordIndex: number;
-  vocabBank: WordBreakdown[];
-  wordsLearnedToday: number;
+  episode: EpisodeData | null;
   connected: boolean;
-  setLesson: (l: LessonData) => void;
-  setActiveWordIndex: (i: number) => void;
+  vocabBank: WordCard[];
+  wordsLearnedToday: number;
+  setEpisode: (e: EpisodeData) => void;
   setConnected: (v: boolean) => void;
 }
 
 export const useStore = create<StoreState>((set, get) => ({
-  lesson: null,
-  activeWordIndex: 0,
+  episode: null,
+  connected: false,
   vocabBank: [],
   wordsLearnedToday: Number(localStorage.getItem('wordsToday') ?? 0),
-  connected: false,
 
-  setLesson: (lesson) => {
+  setEpisode: (episode) => {
     const prev = get().vocabBank;
-    const newWords = lesson.words.filter(
+    const newWords = episode.words.filter(
       (w) => !prev.some((p) => p.arabic === w.arabic)
     );
-    const bank = [...newWords, ...prev].slice(0, 50);
+    const bank = [...newWords, ...prev].slice(0, 100);
     const count = get().wordsLearnedToday + newWords.length;
     localStorage.setItem('wordsToday', String(count));
-    set({ lesson, activeWordIndex: 0, vocabBank: bank, wordsLearnedToday: count });
+    set({ episode, vocabBank: bank, wordsLearnedToday: count });
   },
-  setActiveWordIndex: (activeWordIndex) => set({ activeWordIndex }),
   setConnected: (connected) => set({ connected }),
 }));

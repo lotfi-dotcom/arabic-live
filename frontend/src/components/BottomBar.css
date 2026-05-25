@@ -1,0 +1,75 @@
+.bottombar {
+  flex-shrink: 0;
+  background: rgba(6,11,24,0.95);
+  border-top: 1px solid rgba(201,168,76,0.12);
+}
+
+.bb-segments {
+  display: flex;
+  align-items: center;
+  padding: 6px 20px;
+  gap: 4px;
+  overflow-x: auto;
+}
+
+.bb-segments::-webkit-scrollbar { display: none; }
+
+.bb-seg {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  transition: all 0.3s;
+  white-space: nowrap;
+  cursor: default;
+  opacity: 0.35;
+}
+
+.bb-seg-done {
+  opacity: 0.5;
+}
+
+.bb-seg-active {
+  opacity: 1;
+  border-color: rgba(201,168,76,0.4);
+  background: rgba(201,168,76,0.08);
+}
+
+.bb-seg-icon {
+  font-size: 10px;
+  color: var(--gold);
+}
+
+.bb-seg-label {
+  font-family: var(--ui);
+  font-size: 8px;
+  letter-spacing: 1px;
+  color: var(--text);
+}
+
+.bb-seg-active .bb-seg-label {
+  color: var(--gold2);
+}
+
+.bb-countdown {
+  margin-left: auto;
+  font-family: var(--ui);
+  font-size: 14px;
+  color: var(--gold2);
+  letter-spacing: 2px;
+  padding-left: 16px;
+}
+
+.bb-progress-track {
+  height: 3px;
+  background: rgba(201,168,76,0.08);
+}
+
+.bb-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--green), var(--gold), var(--gold2));
+  transition: width 1s linear;
+  box-shadow: 0 0 8px rgba(201,168,76,0.5);
+}

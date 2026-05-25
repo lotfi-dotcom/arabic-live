@@ -1,17 +1,19 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg: #05080f;
-  --panel: #080d16;
-  --border: #1a2a1a;
-  --gold: #c9a84c;
-  --gold2: #e8c96a;
-  --green: #2aab5a;
-  --text: #c8d8c0;
-  --dim: #3a5a3a;
+  --bg:     #03060e;
+  --panel:  #060b18;
+  --border: #12201a;
+  --gold:   #c9a84c;
+  --gold2:  #e8c96a;
+  --gold3:  #f5dfa0;
+  --green:  #00c896;
+  --red:    #e85555;
+  --text:   #c8d4c0;
+  --dim:    #2e4a38;
   --arabic: 'Noto Naskh Arabic', 'Amiri', serif;
-  --ui: 'Orbitron', sans-serif;
-  --mono: 'Share Tech Mono', monospace;
+  --ui:     'Orbitron', sans-serif;
+  --mono:   'Share Tech Mono', monospace;
 }
 
 body {
@@ -21,23 +23,46 @@ body {
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  cursor: default;
 }
 
+/* Islamic geometric background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(60deg, transparent, transparent 40px, rgba(201,168,76,0.015) 40px, rgba(201,168,76,0.015) 41px),
+    repeating-linear-gradient(-60deg, transparent, transparent 40px, rgba(201,168,76,0.015) 40px, rgba(201,168,76,0.015) 41px),
+    repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(201,168,76,0.01) 40px, rgba(201,168,76,0.01) 41px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Scanline */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
-  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+  background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.04) 3px, rgba(0,0,0,0.04) 4px);
   pointer-events: none;
   z-index: 9000;
 }
 
+#root { position: relative; z-index: 1; height: 100vh; display: flex; flex-direction: column; }
+
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--dim); }
+::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 2px; }
 
-@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes pulse-gold { 0%,100% { opacity:1; } 50% { opacity:0.5; } }
-@keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
-@keyframes wordPop { 0% { opacity:0; transform:scale(0.92); } 100% { opacity:1; transform:scale(1); } }
+/* ── ANIMATIONS ── */
+@keyframes fadeIn    { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeUp    { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+@keyframes scaleIn   { from { opacity:0; transform:scale(0.88); } to { opacity:1; transform:scale(1); } }
+@keyframes pulse     { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+@keyframes glow      { 0%,100% { text-shadow: 0 0 20px rgba(201,168,76,0.4); } 50% { text-shadow: 0 0 50px rgba(232,201,106,0.8), 0 0 100px rgba(201,168,76,0.3); } }
+@keyframes shimmer   { 0% { background-position:-200% center; } 100% { background-position:200% center; } }
+@keyframes slideInL  { from { opacity:0; transform:translateX(-30px); } to { opacity:1; transform:translateX(0); } }
+@keyframes slideInR  { from { opacity:0; transform:translateX(30px); } to { opacity:1; transform:translateX(0); } }
+@keyframes revealAns { 0% { transform:scale(1); } 50% { transform:scale(1.08); } 100% { transform:scale(1); } }
+@keyframes barFill   { from { width:0; } to { width:100%; } }
+@keyframes countdown { from { stroke-dashoffset:0; } to { stroke-dashoffset:283; } }

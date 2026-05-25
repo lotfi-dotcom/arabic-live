@@ -1,0 +1,64 @@
+.ls {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: var(--bg);
+}
+
+.ls-geo {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 60% at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.ls-arabic {
+  font-family: var(--arabic);
+  font-size: 18px;
+  color: var(--dim);
+  letter-spacing: 4px;
+}
+
+.ls-title {
+  font-family: var(--ui);
+  font-size: 32px;
+  letter-spacing: 12px;
+  color: var(--gold);
+  font-weight: 900;
+}
+
+.ls-bismillah {
+  font-family: var(--arabic);
+  font-size: 42px;
+  color: var(--gold2);
+  animation: glow 3s ease-in-out infinite;
+  margin: 12px 0;
+}
+
+.ls-bar {
+  width: 260px;
+  height: 2px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.ls-bar-fill {
+  height: 100%;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  animation: shimmer 1.6s linear infinite;
+  background-size: 200% 100%;
+}
+
+.ls-status {
+  font-size: 11px;
+  color: var(--dim);
+  letter-spacing: 2px;
+  font-family: var(--mono);
+}
