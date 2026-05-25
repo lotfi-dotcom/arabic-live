@@ -1,0 +1,150 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+/* ── HEADER ── */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 52px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-arabic {
+  font-family: var(--arabic);
+  font-size: 20px;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.header-title {
+  font-family: var(--ui);
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: var(--gold2);
+  font-weight: 700;
+}
+
+.header-center {
+  flex: 1;
+  text-align: center;
+}
+
+.header-sub {
+  font-size: 10px;
+  color: var(--dim);
+  letter-spacing: 1px;
+}
+
+.header-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dot-live {
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  animation: pulse-gold 1.4s infinite;
+}
+
+.dot-off {
+  background: #555;
+}
+
+.status-label {
+  font-family: var(--ui);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--green);
+}
+
+/* ── BODY ── */
+.app-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  gap: 0;
+}
+
+.col-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-right: 1px solid var(--border);
+}
+
+.col-right {
+  width: 320px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── LOADING OVERLAY ── */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 8, 15, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  z-index: 100;
+}
+
+.loading-arabic {
+  font-family: var(--arabic);
+  font-size: 52px;
+  color: var(--gold);
+  animation: pulse-gold 2s infinite;
+}
+
+.loading-text {
+  font-size: 13px;
+  color: var(--dim);
+  letter-spacing: 2px;
+}
+
+.loading-bar {
+  width: 200px;
+  height: 2px;
+  background: var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.loading-bar::after {
+  content: '';
+  position: absolute;
+  left: -50%;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  animation: shimmer 1.4s linear infinite;
+}
